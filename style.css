@@ -7,3 +7,10 @@ body {
   margin: 0;
   padding: 24px;
 }
+
+.header {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
