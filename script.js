@@ -8,5 +8,14 @@ const task = {
   priority: "high"
 };
 
-const message =  `A tarefa é: ${task.title}`;
-console.log(message);
+
+const taskList = document.getElementById("task-list");
+
+taskList.innerHTML = `
+  <div class="task">
+    <p class="task-category">${task.category}</p>
+    <p class="task-tittle">${task.title}</p>
+    <p class="task-time">${task.time}</p>
+    <span class="priority priority-high">${task.priority}</span>
+  </div>
+`;
