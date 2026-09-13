@@ -5,22 +5,16 @@ const task = {
   category: "Trabalho",
   title: "Cotação João — Recife/Gramado",
   time: "30 min",
-  priority: "low"
+  priority: "medium"
 };
 
-let priorityLabel;
-let priorityClass;
+const priorityInfo = {
+  high: { label: "Alta", className: "priority-high"},
+  medium: { label: "Média", className: "priority-medium"},
+  low: { label: "Baixa", className: "priority-low"}
+};
 
-if (task.priority === "high") {
-  priorityLabel = "Alta";
-  priorityClass = "priority-high";
-} else if (task.priority === "medium") {
-  priorityLabel = "Média";
-  priorityClass = "priority-medium";
-} else {
-  priorityLabel = "Baixa";
-  priorityClass = "priority-low";
-}
+const info = priorityInfo[task.priority];
 
 const taskList = document.getElementById("task-list");
 
@@ -29,6 +23,6 @@ taskList.innerHTML = `
     <p class="task-category">${task.category}</p>
     <p class="task-tittle">${task.title}</p>
     <p class="task-time">${task.time}</p>
-    <span class="priority ${priorityClass}">${priorityLabel}</span>
+    <span class="priority ${info.className}">${info.label}</span>
   </div>
 `;
