@@ -54,6 +54,10 @@ renderTasks();
 addButton.addEventListener("click", function () {
   const newTaskText = taskInput.value;
 
+  if (newTaskText === "") {
+    return;
+  }
+
   const newTask = {
     category: "Pessoal",
     title: newTaskText,
