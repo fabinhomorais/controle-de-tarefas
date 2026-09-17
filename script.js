@@ -52,7 +52,7 @@ function renderTasks() {
 renderTasks();
 
 addButton.addEventListener("click", function () {
-  const newTaskText = taskInput.value;
+  const newTaskText = taskInput.value.trim();
 
   if (newTaskText === "") {
     return;
