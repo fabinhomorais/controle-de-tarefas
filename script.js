@@ -2,6 +2,7 @@ const taskList = document.getElementById("task-list");
 const addButton = document.getElementById("add-button");
 const taskInput = document.getElementById("task-input");
 const priorityInput = document.getElementById("priority-input");
+const categoryInput = document.getElementById("category-input");
 
 const today = new Date();
 document.getElementById("week").textContent = "Hoje é " + today.toLocaleDateString("pt-BR");
@@ -60,7 +61,7 @@ addButton.addEventListener("click", function () {
   }
 
   const newTask = {
-    category: "Pessoal",
+    category: categoryInput.value,
     title: newTaskText,
     time: "",
     priority: priorityInput.value
