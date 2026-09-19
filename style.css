@@ -84,3 +84,8 @@ body {
   font-weight: bold;
   cursor: pointer;
 }
+
+.task-done .task-title {
+  text-decoration: line-through;
+  color: #94a3b8;
+}
