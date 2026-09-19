@@ -54,6 +54,7 @@ function renderTasks() {
         <p class="task-title">${task.title}</p>
         <p class="task-time">${task.time}</p>
         <span class="priority ${info.className}">${info.label}</span>
+        <button class="delete-button" data-index="${index}">x</button>
       </div>
     `;
   });
@@ -64,6 +65,17 @@ function renderTasks() {
     card.addEventListener("click", function () {
       const index = card.dataset.index;
       tasks[index].done = !tasks[index].done;
+      renderTasks();
+    });
+  });
+
+  const deleteButtons = document.querySelectorAll(".delete-button");
+
+  deleteButtons.forEach(function (button) {
+    button.addEventListener("click", function (event) {
+      event.stopPropagation();
+      const index = button.dataset.index;
+      tasks.splice(index, 1);
       renderTasks();
     });
   });
