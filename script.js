@@ -7,29 +7,15 @@ const categoryInput = document.getElementById("category-input");
 const today = new Date();
 document.getElementById("week").textContent = "Hoje é " + today.toLocaleDateString("pt-BR");
 
-const tasks = [
-  {
-    category: "Trabalho",
-    title: "Cotação João - Recife/Gramado",
-    time: "30 min",
-    priority: "high",
-    done: false
-  },
-  {
-    category: "Pessoal",
-    title: "Estudar Inglês",
-    time: "10 min",
-    priority: "low",
-    done: false
-  },
-  {
-    category: "Pessoal",
-    title: "Controle de Tarefa",
-    time: "90 min",
-    priority: "medium",
-    done: false
-  }
-];
+const savedTasks = localStorage.getItem("tasks");
+
+let tasks;
+
+if (savedTasks) {
+  tasks = JSON.parse(savedTasks);
+} else {
+  tasks = [];
+}
 
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
