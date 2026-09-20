@@ -31,6 +31,10 @@ const tasks = [
   }
 ];
 
+function saveTasks() {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
 function renderTasks() {
   taskList.innerHTML = "";
 
@@ -60,23 +64,23 @@ function renderTasks() {
   });
 
   const taskCards = document.querySelectorAll(".task");
-
   taskCards.forEach(function (card) {
     card.addEventListener("click", function () {
       const index = card.dataset.index;
       tasks[index].done = !tasks[index].done;
       renderTasks();
+      saveTasks();
     });
   });
 
   const deleteButtons = document.querySelectorAll(".delete-button");
-
   deleteButtons.forEach(function (button) {
     button.addEventListener("click", function (event) {
       event.stopPropagation();
       const index = button.dataset.index;
       tasks.splice(index, 1);
       renderTasks();
+      saveTasks();
     });
   });
 }
@@ -101,6 +105,6 @@ addButton.addEventListener("click", function () {
   tasks.push(newTask);
   
   renderTasks();
-
+  saveTasks();
   taskInput.value = "";
 });
