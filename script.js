@@ -7,6 +7,23 @@ const categoryInput = document.getElementById("category-input");
 const today = new Date();
 document.getElementById("week").textContent = "Hoje é " + today.toLocaleDateString("pt-BR");
 
+let daysToMonday = today.getDay() - 1;
+
+if (daysToMonday < 0) {
+  daysToMonday = 6;
+}
+
+const monday = new Date(today)
+monday.setDate(today.getDate() - daysToMonday);
+
+const sunday = new Date(monday);
+sunday.setDate(monday.getDate() + 6);
+
+const mondayText = monday.toLocaleDateString("pt-BR");
+const sundayText = sunday.toLocaleDateString("pt-BR");
+
+document.getElementById("week").textContent = "Semana de " + mondayText + " a " + sundayText;
+
 const savedTasks = localStorage.getItem("tasks");
 
 let tasks;
