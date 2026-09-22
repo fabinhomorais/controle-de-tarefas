@@ -3,6 +3,7 @@ const addButton = document.getElementById("add-button");
 const taskInput = document.getElementById("task-input");
 const priorityInput = document.getElementById("priority-input");
 const categoryInput = document.getElementById("category-input");
+const deadlineInput = document.getElementById("deadline-input");
 
 const today = new Date();
 document.getElementById("week").textContent = "Hoje é " + today.toLocaleDateString("pt-BR");
@@ -38,6 +39,15 @@ function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
+function formatDeadline(deadline) {
+  if (!deadline) {
+    return "Sem prazo";
+  }
+
+  const date = new Date(deadline + "T00:00:00");
+  return "Prazo: " + date.toLocaleDateString("pt-BR");
+}
+
 function renderTasks() {
   taskList.innerHTML = "";
 
@@ -60,6 +70,7 @@ function renderTasks() {
         <p class="task-category">${task.category}</p>
         <p class="task-title">${task.title}</p>
         <p class="task-time">${task.time}</p>
+        <p class="task-deadline">${formatDeadline(task.deadline)}</p>
         <span class="priority ${info.className}">${info.label}</span>
         <button class="delete-button" data-index="${index}">x</button>
       </div>
@@ -102,6 +113,7 @@ addButton.addEventListener("click", function () {
     title: newTaskText,
     time: "",
     priority: priorityInput.value,
+    deadline: deadlineInput.value,
     done: false
   };
 
