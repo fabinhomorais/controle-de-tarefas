@@ -89,3 +89,22 @@ body {
   text-decoration: line-through;
   color: #94a3b8;
 }
+
+.deadline-late {
+  color: #dc2626;
+  font-weight: bold;
+}
+
+.deadline-today {
+  color: #ffae00;
+  font-weight: bold;
+}
+
+.deadline-ok {
+  color: #16a34a;
+  font-weight: bold;
+}
+
+.deadline-none {
+  color: #16a34a;
+}

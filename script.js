@@ -48,6 +48,34 @@ function formatDeadline(deadline) {
   return "Prazo: " + date.toLocaleDateString("pt-BR");
 }
 
+function daysUntil(deadline) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const target = new Date(deadline + "T00:00:00");
+
+  const diffMs = target - today;
+  const oneDay = 24 * 60 * 60 * 1000;
+
+  return Math.round(diffMs / oneDay);
+}
+
+function getDeadlineStatus(deadline) {
+  if (!deadline) {
+    return "none";
+  }
+
+  const days = daysUntil(deadline);
+
+  if (days < 0) {
+    return "late";
+  } else if (days === 0) {
+    return "today";
+  } else {
+    return "ok";
+  }
+}
+
 function renderTasks() {
   taskList.innerHTML = "";
 
@@ -65,12 +93,14 @@ function renderTasks() {
       doneClass = "task-done";
     }
 
+    const deadlineStatus = getDeadlineStatus(task.deadline);
+
     taskList.innerHTML += `
       <div class="task ${doneClass}" data-index="${index}">
         <p class="task-category">${task.category}</p>
         <p class="task-title">${task.title}</p>
         <p class="task-time">${task.time}</p>
-        <p class="task-deadline">${formatDeadline(task.deadline)}</p>
+        <p class="task-deadline deadline-${deadlineStatus}">${formatDeadline(task.deadline)}</p>
         <span class="priority ${info.className}">${info.label}</span>
         <button class="delete-button" data-index="${index}">x</button>
       </div>
