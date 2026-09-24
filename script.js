@@ -76,7 +76,30 @@ function getDeadlineStatus(deadline) {
   }
 }
 
+function deadlineForSort(deadline) {
+  if (!deadline) {
+    return 999999;
+  }
+  return daysUntil(deadline);
+}
+
 function renderTasks() {
+  const priorityWeight = {
+    high: 1,
+    medium: 2,
+    low: 3
+  };
+
+  tasks.sort(function (a, b) {
+    const deadlineDiff = deadlineForSort(a.deadline) - deadlineForSort(b.deadline);
+    
+    if (deadlineDiff !== 0) {
+      return deadlineDiff;
+    }
+
+    return priorityWeight[a.priority] - priorityWeight[b.priority];
+  });
+
   taskList.innerHTML = "";
 
   tasks.forEach(function (task, index) {
