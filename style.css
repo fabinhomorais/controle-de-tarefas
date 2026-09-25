@@ -6,6 +6,9 @@ body {
   color: #0f172a;
   margin: 0;
   padding: 24px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .header {
@@ -92,6 +95,11 @@ body {
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#add-button:hover {
+  background-color: #4338ca;
 }
 
 .task-done .task-title {
