@@ -63,11 +63,20 @@ body {
 
 .new-task {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 16px;
 }
 
 #task-input {
+  flex: 1 1 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.form-field {
   flex: 1;
   padding: 12px;
   border: 1px solid #cbd5e1;
